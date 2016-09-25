@@ -3,11 +3,11 @@
  * mysqli-query-timeout
  * wangyang
  */
-namespace TimeoutQuery;
+namespace MysqlTimeout;
 use Exception;
 use mysqli;
 
-class TimeoutQuery
+class MysqlTimeout
 {
     public $db;
     public $error;
