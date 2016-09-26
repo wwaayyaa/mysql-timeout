@@ -2,9 +2,15 @@
 Customizing the timeout for a database query
 
 ## Install
-
-composer require wwaayyaa/mysql-timeout
-
+composer.json
+```javascript
+{
+"require": {
+    "wwaayyaa/mysql-timeout":  "dev-master"
+  }
+}
+```
+```$ composer install```
 ## Example
 
 php code
