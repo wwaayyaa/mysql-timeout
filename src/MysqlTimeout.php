@@ -31,14 +31,18 @@ class MysqlTimeout
             foreach ($all_links as $link) {
                 $links[] = $errors[] = $reject[] = $link;
             }
-            if (!mysqli_poll($links, $errors, $reject, 0, 50000)) {
-                if(microtime(true)-$begin > $timeout){
-                    $result = $this->db->reap_async_query();
-                    mysqli_free_result($result);
-                    throw new Exception('timeout',922922);
-                    break;
+            try{
+                if (!mysqli_poll($links, $errors, $reject, 0, 50000)) {
+                    if(microtime(true)-$begin > $timeout){
+                        $result = $this->db->reap_async_query();
+                        mysqli_free_result($result);
+                        throw new Exception('timeout',922922);
+                        break;
+                    }
+                    continue;
                 }
-                continue;
+            }catch(Exception $ex){
+                throw new Exception($ex->getMessage(),$ex->getCode());
             }
             foreach ($links as $link) {
                 if ($result = $link->reap_async_query()) {
