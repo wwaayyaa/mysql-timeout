@@ -112,7 +112,12 @@ primary id:1096
  - charset | must 'utf8'
  - timeout | non-must 3
 
-### timeout (defalut : 3)
- - The MsyqlTimeout inspection cycle is 0.05 seconds,
+### timeout (defalut : ```3```)
+ - The MsyqlTimeout inspection cycle is ```0.05``` seconds,
  - so the minimum value of the $timeout parameter is 0.05,
- - the maximum value depends on the PHP.ini max_execution_time and MySQL timeout settings.
+ - the maximum value depends on the PHP.ini ```max_execution_time``` and MySQL ```timeout settings```.
+
+## Exception
+
+### errorcode
+>If the query timeout,  MysqlTimeout will throw an exception, the exception number ```922922```
