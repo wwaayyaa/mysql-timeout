@@ -103,6 +103,14 @@ primary id:1096
 
 ## Args
 
+### config
+ - host | must '127.0.0.1'
+ - port | non-must '3306'
+ - user | must 'root'
+ - password | must 'root'
+ - dbname | must 'text'
+ - charset | must 'utf8'
+ - timeout | non-must 3
 ### timeout (defalut : 3)
  - The MsyqlTimeout inspection cycle is 0.05 seconds,
  - so the minimum value of the $timeout parameter is 0.05,

@@ -15,7 +15,7 @@ class MysqlTimeout
     public $affected_rows;
     public $timeout = 3;
     function __construct($config){
-        $this->db = new mysqli($config['host'], $config['user'], $config['password'], $config['dbname'], $config['port']);
+        $this->db = new mysqli($config['host'], $config['user'], $config['password'], $config['dbname'], isset($config['port']) ? $config['port'] : 3306);
         $this->timeout = isset($config['timeout']) ? $config['timeout'] : 3;
         $this->db->set_charset($config['charset']);
     }
