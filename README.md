@@ -75,3 +75,33 @@ success rows:2
 primary id:1096
 
 ```
+
+## Method
+
+```php
+	/**
+     * @return mixed  query data
+     */
+	public function query($sql, $timeout = 3);
+
+	/**
+     * @return int   rows count
+     */
+	public function update($sql, $timeout = 3);
+
+	/**
+     * @return int   data primary id
+     */
+	public function insert($sql, $timeout = 3);
+
+	/**
+     * @return int   rows count
+     */
+	public function delete($sql, $timeout = 3);
+
+```
+
+## Args
+	### $timeout (defalut value 3):
+	The MsyqlTimeout inspection cycle is ```0.05``` seconds,
+	so the minimum value of the $timeout parameter is 0.05, the maximum value depends on the PHP.ini max_execution_time and MySQL timeout settings.
