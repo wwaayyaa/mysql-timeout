@@ -111,6 +111,7 @@ primary id:1096
  - dbname | must 'text'
  - charset | must 'utf8'
  - timeout | non-must 3
+
 ### timeout (defalut : 3)
  - The MsyqlTimeout inspection cycle is 0.05 seconds,
  - so the minimum value of the $timeout parameter is 0.05,
