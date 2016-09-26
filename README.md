@@ -103,7 +103,7 @@ primary id:1096
 
 ## Args
 
-timeout (defalut value 3):
-	The MsyqlTimeout inspection cycle is 0.05 seconds,
-	so the minimum value of the $timeout parameter is 0.05,
-	the maximum value depends on the PHP.ini max_execution_time and MySQL timeout settings.
+### timeout (defalut : 3)
+ - The MsyqlTimeout inspection cycle is 0.05 seconds,
+ - so the minimum value of the $timeout parameter is 0.05,
+ - the maximum value depends on the PHP.ini max_execution_time and MySQL timeout settings.
