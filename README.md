@@ -19,21 +19,34 @@ php code
     $conf = Conf::$db1;
     print_r($conf);
     $d = new MysqlTimeout($conf);
+    echo time()."\n";
+    
     $r = $d->query('select sleep(2) as `sleep`,2 as `sec`;');
     print_r($r);
+    echo time()."\n";
+    
     $r = $d->query('select * from dtk_zhibo_chat_log where zhiboId = 1292 limit 1;');
     print_r($r);
+    echo time()."\n";
+    
     try{
-    $r = $d->query('select sleep(5) as `sleep`,5 as `sec`;');
+        $r = $d->query('select sleep(5) as `sleep`,5 as `sec`;');
     }catch(Exception $e){
         echo sprintf("error message:%s ,error code : %d \n",$e->getMessage(),$e->getCode());
     }
+    echo time()."(5s timeout)\n";
+    
     $r = $d->query('select sleep(5) as `sleep`,5 as `sec`;',6);
     print_r($r);
+    echo time()."(5s query success)\n";
+    
     $r = $d->update("update dtk_zhibo_chat_log set addtime=now() where id = 6 or id = 17;");
     echo sprintf("success rows:%d \n",$r);
+    echo time()."\n";
+    
     $r = $d->insert("insert into dtk_zhibo_chat_log (zhiboId,content) values (1292,'test');");
     echo sprintf("primary id:%d \n",$r);
+    echo time()."\n";
 ```
 result
 
@@ -47,6 +60,7 @@ Array
     [dbname] => test
     [charset] => utf8
 )
+1474939904
 Array
 (
     [0] => Array
@@ -56,18 +70,21 @@ Array
         )
 
 )
+1474939907
 Array
 (
     [0] => Array
         (
             [id] => 6
             [zhiboId] => 1292
-            [content] => hello,young.
-            [addtime] => 2016-09-26 11:12:00
+            [content] => <p><img src="http://img.baidu.com/hi/jx2/j_0002.gif"/>hi</p>
+            [addtime] => 2016-09-24 16:46:30
         )
 
 )
+1474939907
 error message:timeout ,error code : 922922
+1474939912(5s timeout)
 Array
 (
     [0] => Array
@@ -77,8 +94,12 @@ Array
         )
 
 )
+1474939917(5s query success)
 success rows:2
-primary id:1096
+1474939917
+primary id:985
+1474939917
+
 
 ```
 
