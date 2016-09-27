@@ -15,10 +15,10 @@ class MysqlTimeout
     public $affected_rows;
     public $timeout = 3;
     function __construct($config){
-        try{
-            $this->db = new mysqli($config['host'], $config['user'], $config['password'], $config['dbname'], isset($config['port']) ? $config['port'] : 3306);
-        }catch(Exception $e){
-            throw new Exception($e->getMessage(),$e->getCode());
+        $this->db = @new mysqli($config['host'], $config['user'], $config['password'], $config['dbname'], isset($config['port']) ? $config['port'] : 3306);
+        if($this->error = mysqli_connect_error()){
+            $this->db = null;
+            throw new Exception('connection mysql fail');
         }
         $this->timeout = isset($config['timeout']) ? $config['timeout'] : 3;
         $this->db->set_charset($config['charset']);
@@ -35,18 +35,14 @@ class MysqlTimeout
             foreach ($all_links as $link) {
                 $links[] = $errors[] = $reject[] = $link;
             }
-            try{
-                if (!mysqli_poll($links, $errors, $reject, 0, 50000)) {
-                    if(microtime(true)-$begin > $timeout){
-                        $result = $this->db->reap_async_query();
-                        mysqli_free_result($result);
-                        throw new Exception('timeout',922922);
-                        break;
-                    }
-                    continue;
+            if (!mysqli_poll($links, $errors, $reject, 0, 50000)) {
+                if(microtime(true)-$begin > $timeout){
+                    $result = $this->db->reap_async_query();
+                    mysqli_free_result($result);
+                    throw new Exception('timeout',922922);
+                    break;
                 }
-            }catch(Exception $ex){
-                throw new Exception($ex->getMessage(),$ex->getCode());
+                continue;
             }
             foreach ($links as $link) {
                 if ($result = $link->reap_async_query()) {
