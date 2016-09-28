@@ -3,7 +3,7 @@
     "description": "Customizing the timeout for a database query",
     "type": "library",
     "keywords": ["mysql", "timeout", "query"],
-    "version": "1.0.1",
+    "version": "1.0.2",
     "license": "MIT",
     "authors": [
       {

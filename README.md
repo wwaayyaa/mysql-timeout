@@ -46,11 +46,11 @@ result
 ```php
 Array
 (
-    [host] => 139.129.228.6
+    [host] => 127.0.0.1
     [port] => 3306
     [user] => root
-    [password] => qingtaokeDB520
-    [dbname] => dataoke2
+    [password] => root
+    [dbname] => test
     [charset] => utf8
 )
 now:1475055713
