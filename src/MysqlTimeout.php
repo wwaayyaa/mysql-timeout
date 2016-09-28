@@ -37,10 +37,10 @@ class MysqlTimeout
             }
             if (!mysqli_poll($links, $errors, $reject, 0, 50000)) {
                 if(microtime(true)-$begin > $timeout){
-                    $result = $this->db->reap_async_query();
-                    mysqli_free_result($result);
+                    //$result = $this->db->reap_async_query();
+                    //mysqli_free_result($result);
                     throw new Exception('timeout',922922);
-                    break;
+                    //break;
                 }
                 continue;
             }
