@@ -31,6 +31,8 @@ php code
         echo sprintf("error message:%s ,error code : %d \n",$e->getMessage(),$e->getCode());
     }
     echo "sleep 5s but timeout is 3s,so throw a error.now:".time()."\n";
+
+    $d = new MysqlTimeout($conf);//must new a MysqlTimeout. because 
     $r = $d->query('select sleep(5) as `sleep`,5 as `sec`;',6);
     print_r($r);
     echo "sleep 5s success,because timeout is 6s. now:".time()."\n";
@@ -53,7 +55,7 @@ Array
     [dbname] => test
     [charset] => utf8
 )
-now:1475055713
+now:1475056910
 Array
 (
     [0] => Array
@@ -63,9 +65,9 @@ Array
         )
 
 )
-sleep 2s,now:1475055715
+sleep 2s,now:1475056912
 error message:timeout ,error code : 922922
-sleep 5s but timeout is 3s,so throw a error.now:1475055718
+sleep 5s but timeout is 3s,so throw a error.now:1475056915
 Array
 (
     [0] => Array
@@ -75,9 +77,9 @@ Array
         )
 
 )
-sleep 5s success,because timeout is 6s. now:1475055720
+sleep 5s success,because timeout is 6s. now:1475056920
 success rows:2
-primary id:1001
+primary id:1036
 
 ```
 
